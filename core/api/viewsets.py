@@ -4,9 +4,9 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-
 from core.api.serializers import PontoTuristicoSerializer
 from core.models import PontoTuristico
+
 
 class PontoTuristicoViewSet(ModelViewSet):
 
@@ -16,7 +16,7 @@ class PontoTuristicoViewSet(ModelViewSet):
     search_fields = ['nome', 'descricao', 'endereco__linha1']
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
-    lookup_field = 'nome' #fazendo getOne com nome (dá problema com objetos com mesmo nome, por isso o campo precisa ser único)
+    #lookup_field = 'nome' #fazendo getOne com nome (dá problema com objetos com mesmo nome, por isso o campo precisa ser único)
 
     def get_queryset(self):
         #Posso fazer multiplas filtragens dentro dessa lista e retornar ela :)
@@ -46,6 +46,7 @@ class PontoTuristicoViewSet(ModelViewSet):
 
     #interceptando método delete
     def destroy(self, request, *args, **kwargs):
+        print(request)
         return super(PontoTuristicoViewSet, self).destroy(request, *args, **kwargs)
 
     #interceptando o método getOne do cliente
