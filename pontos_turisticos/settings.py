@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = ['pontos-turisticos-filipe.herokuapp.com/', 'localhost:8000']
+ALLOWED_HOSTS = ['pontos-turisticosf.herokuapp.com', 'localhost:8000']
 
 
 # Application definition
@@ -82,7 +83,6 @@ WSGI_APPLICATION = 'pontos_turisticos.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 from dj_database_url import parse as dburl
-import os
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
 DATABASES = { 'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
